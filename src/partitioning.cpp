@@ -23,8 +23,11 @@ namespace assignment {
     // поиск медианы среди трех элементов по индексам start, middle и stop
 
     // Здесь должна быть ваша реализация ...
+    int maximum = start > middle? start > stop? start:stop: middle > stop? middle:stop;
+    int first_not_max = start == maximum? middle:start;
+    int second_not_max = stop == maximum? middle:stop;
 
-    return -1 /* здесь что-то не так ... */;
+    return first_not_max < second_not_max? second_not_max:first_not_max /* здесь что-то не так ... */;
   }
 
   int partition(std::vector<int>& arr, int start, int stop, int pivot) {
@@ -52,7 +55,8 @@ namespace assignment {
     for (int index = start; index < stop; index++) {
 
       if (arr[index] < pivot_value) {
-        // Напишите здесь ваш код ...
+        std::swap(arr[curr_pivot_index], arr[index]);
+        curr_pivot_index += 1;
       }
     }
 
@@ -60,7 +64,7 @@ namespace assignment {
     std::swap(arr[curr_pivot_index], arr[stop]);
 
     // возвращаем индекс опорного элемента
-    return -1 /* здесь что-то не так ... */;
+    return curr_pivot_index /* здесь что-то не так ... */;
   }
 
 }  // namespace assignment
